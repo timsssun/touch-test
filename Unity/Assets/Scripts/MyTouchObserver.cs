@@ -7,7 +7,7 @@
 
     public class MyTouchObserver : MonoBehaviour, ISingleTouchObserver {
 
-		#region Properties
+		#region Fields
 
 		[System.NonSerialized]
         private Camera m_Camera;
@@ -18,7 +18,12 @@
         [System.NonSerialized]
         private Transform m_Transform;
 
-        public Camera Camera {
+		#endregion
+
+
+		#region Properties
+
+		public Camera Camera {
             get { return m_Camera = m_Camera ?? CameraUtils.FindRootCamera(this.Transform); }
         }
 
@@ -37,7 +42,7 @@
 
 		public bool OnTouchBegan(Touch touch) {
             //hit detection
-            return HitTest();
+            return HitTest(touch);
         }
 
         public void OnTouchCancelled(Touch touch) {
