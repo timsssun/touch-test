@@ -540,8 +540,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 293543751}
-        m_MethodName: EnableTouchArea
+      - m_Target: {fileID: 1281765050}
+        m_MethodName: EnableAllTouch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1222,8 +1222,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 293543751}
-        m_MethodName: EnableTouchArea
+      - m_Target: {fileID: 1281765050}
+        m_MethodName: DisableAllTouch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
