@@ -33,23 +33,37 @@
 		#endregion
 
 
-		#region Touch
+		#region TouchHandlers
 
 		public bool OnTouchBegan(Touch touch) {
-            Debug.Log("touched");
+            //hit detection
+            return HitTest();
+        }
+
+        public void OnTouchCancelled(Touch touch) {
+            React();
+        }
+
+        public void OnTouchEnded(Touch touch) {
+            React();
+        }
+
+        public void OnTouchMoved(Touch touch) {
+        }
+
+        #endregion
+
+
+        #region Methods
+
+        bool HitTest() {
             Bounds bounds = this.Renderer.bounds;
             bounds.extents += Vector3.forward;
             return bounds.Contains(CameraUtils.TouchToWorldPoint(touch, Transform, Camera));
         }
 
-        public void OnTouchCancelled(Touch touch) {
-        }
-
-        public void OnTouchEnded(Touch touch) {
-            Debug.Log("touch ended");
-        }
-
-        public void OnTouchMoved(Touch touch) {
+        void React() {
+            Debug.Log("square react");
         }
 
         void OnEnable() {
@@ -64,7 +78,7 @@
             }
         }
 
-		#endregion
+        #endregion
 
-	}
+    }
 }
