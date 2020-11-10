@@ -21,6 +21,12 @@
         [System.NonSerialized]
         private Touch m_Touch;
 
+        [System.NonSerialized]
+        private List<Touch> m_Touches;
+
+        [System.NonSerialized]
+        private bool handleMultipleTouches = true;
+
 		#endregion
 
 
@@ -38,16 +44,27 @@
             get { return m_Transform = m_Transform ?? GetComponent<Transform>(); }
         }
 
+        public List<Touch> Touches {
+            get { return m_Touches = m_Touches ?? new List<Touch>(); }
+        }
+
 		#endregion
 
 
 		#region TouchHandlers
 
 		public bool OnTouchBegan(Touch touch) {
-            if (m_Touch == null && HitTest(touch)) {
-                m_Touch = touch;
-                ReactTouchIn();
-                return true;
+            if (HitTest(touch)) {
+                if (handleMultipleTouches) {
+                    this.Touches.Add(touch);
+                    ReactTouchIn();
+                    return true;
+                }
+                if (m_Touch == null) {
+                    m_Touch = touch;
+                    ReactTouchIn();
+                    return true;
+                }
             }
             return false;
         }
