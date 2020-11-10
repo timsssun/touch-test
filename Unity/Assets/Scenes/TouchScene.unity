@@ -124,6 +124,8 @@ GameObject:
   - component: {fileID: 293543753}
   - component: {fileID: 293543752}
   - component: {fileID: 293543751}
+  - component: {fileID: 293543755}
+  - component: {fileID: 293543754}
   m_Layer: 0
   m_Name: TouchArea
   m_TagString: Untagged
@@ -202,6 +204,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293543749}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &293543754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293543749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1048d3aa0af04cd19721cf97e045b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &293543755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293543749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1e046ec649d47a99fc003c6300c7d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Camera: {fileID: 534669904}
+  m_Priority: 0
+  UseUnboundTouches: 0
+  m_PassTouchesThrough: 0
+  DetectTouchExit: 1
+  TouchAnywhere: 0
+  UseRendererBounds: 1
+  Center: {x: 0, y: 0}
+  Extents: {x: 0, y: 0}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
