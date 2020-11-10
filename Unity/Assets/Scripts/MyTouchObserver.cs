@@ -41,7 +41,7 @@
         }
 
         public void OnTouchCancelled(Touch touch) {
-            React();
+            OnTouchEnded(touch);
         }
 
         public void OnTouchEnded(Touch touch) {
@@ -56,7 +56,7 @@
 
         #region Methods
 
-        bool HitTest() {
+        bool HitTest(Touch touch) {
             Bounds bounds = this.Renderer.bounds;
             bounds.extents += Vector3.forward;
             return bounds.Contains(CameraUtils.TouchToWorldPoint(touch, Transform, Camera));
