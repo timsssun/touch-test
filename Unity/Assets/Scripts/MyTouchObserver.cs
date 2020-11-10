@@ -18,6 +18,9 @@
         [System.NonSerialized]
         private Transform m_Transform;
 
+        [System.NonSerialized]
+        private Touch m_Touch;
+
 		#endregion
 
 
@@ -41,8 +44,12 @@
 		#region TouchHandlers
 
 		public bool OnTouchBegan(Touch touch) {
-            //hit detection
-            return HitTest(touch);
+            if (m_Touch == null && HitTest(touch)) {
+                m_Touch = touch;
+                ReactTouchIn();
+                return true;
+            }
+            return false;
         }
 
         public void OnTouchCancelled(Touch touch) {
@@ -50,7 +57,8 @@
         }
 
         public void OnTouchEnded(Touch touch) {
-            React();
+            ReactTouchOut();
+            m_Touch = null;
         }
 
         public void OnTouchMoved(Touch touch) {
@@ -67,8 +75,12 @@
             return bounds.Contains(CameraUtils.TouchToWorldPoint(touch, Transform, Camera));
         }
 
-        void React() {
-            Debug.Log("square react");
+        void ReactTouchIn() {
+            this.Transform.localScale = Vector3.one * 1.2f;
+        }
+
+        void ReactTouchOut() {
+            this.Transform.localScale = Vector3.one;
         }
 
         void OnEnable() {
