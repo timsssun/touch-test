@@ -75,7 +75,12 @@
 
         public void OnTouchEnded(Touch touch) {
             ReactTouchOut();
-            m_Touch = null;
+            if (handleMultipleTouches) {
+                this.Touches.Remove(touch);
+            }
+            else {
+                m_Touch = null;
+            }
         }
 
         public void OnTouchMoved(Touch touch) {
