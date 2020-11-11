@@ -74,11 +74,14 @@
         }
 
         public void OnTouchEnded(Touch touch) {
-            ReactTouchOut();
             if (handleMultipleTouches) {
                 this.Touches.Remove(touch);
+                if (this.Touches.Count < 1) {
+                    ReactTouchOut();
+                }
             }
             else {
+                ReactTouchOut();
                 m_Touch = null;
             }
         }
@@ -98,6 +101,7 @@
         }
 
         void ReactTouchIn() {
+            Debug.Log("touch started");
             this.Transform.localScale = Vector3.one * 1.2f;
         }
 
