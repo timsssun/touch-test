@@ -23,15 +23,15 @@
 		#region Properties
 
 		public TouchArea TouchArea {
-			get { return m_TouchArea = m_TouchArea ?? GetComponent<TouchArea>(); }
+			get { return m_TouchArea = m_TouchArea ? m_TouchArea : GetComponent<TouchArea>(); }
 		}
 
 		public TouchAreaObserver TouchAreaObserver {
-			get { return m_TouchAreaObserver = m_TouchAreaObserver ?? GetComponent<TouchAreaObserver>(); }
+			get { return m_TouchAreaObserver = m_TouchAreaObserver ? m_TouchAreaObserver : GetComponent<TouchAreaObserver>(); }
 		}
 
 		public Transform Transform {
-			get { return m_Transform = m_Transform ?? GetComponent<Transform>(); }
+			get { return m_Transform = m_Transform ? m_Transform : GetComponent<Transform>(); }
 		}
 
 		#endregion
@@ -40,19 +40,20 @@
 		#region Methods
 
 		private void OnEnable() {
-			this.TouchAreaObserver.TouchUpDelegate = ReactTouchUp;
-			this.TouchAreaObserver.TouchDownDelegate = ReactTouchDown;
+			this.TouchAreaObserver.TouchUpDelegate += OnReactTouchUp;
+			this.TouchAreaObserver.TouchDownDelegate += OnReactTouchDown;
 		}
 
 		private void OnDisable() {
-			this.TouchAreaObserver.TouchUpDelegate = null;
+			this.TouchAreaObserver.TouchUpDelegate -= OnReactTouchUp;
+			this.TouchAreaObserver.TouchDownDelegate -= OnReactTouchDown;
 		}
 
-		private void ReactTouchUp(TouchArea touchArea, Touch touch) {
+		private void OnReactTouchUp(TouchArea touchArea, Touch touch) {
 			this.Transform.localScale = Vector3.one;
 		}
 
-		private void ReactTouchDown(TouchArea touchArea, Touch touch) {
+		private void OnReactTouchDown(TouchArea touchArea, Touch touch) {
 			this.Transform.localScale = Vector3.one * 0.8f;
 		}
 

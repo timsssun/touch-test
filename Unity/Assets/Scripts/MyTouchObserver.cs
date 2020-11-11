@@ -37,11 +37,11 @@
 		}
 
 		public Renderer Renderer {
-			get { return m_Renderer = m_Renderer ?? GetComponent<Renderer>(); }
+			get { return m_Renderer = m_Renderer ? m_Renderer : GetComponent<Renderer>(); }
 		}
 
 		public Transform Transform {
-			get { return m_Transform = m_Transform ?? GetComponent<Transform>(); }
+			get { return m_Transform = m_Transform ? m_Transform : GetComponent<Transform>(); }
 		}
 
 		public List<Touch> Touches {
@@ -97,7 +97,7 @@
 		private bool HitTest(Touch touch) {
 			Bounds bounds = this.Renderer.bounds;
 			bounds.extents += Vector3.forward;
-			return bounds.Contains(CameraUtils.TouchToWorldPoint(touch, Transform, Camera));
+			return bounds.Contains(CameraUtils.TouchToWorldPoint(touch, this.Transform, Camera));
 		}
 
 		private void ReactTouchIn() {
